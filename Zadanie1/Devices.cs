@@ -18,14 +18,16 @@ namespace Zadanie1 {
             protected IDevice.State state = IDevice.State.off;
             public IDevice.State GetState() => state;
             private int counter = 0;
-            public void PowerOff() {
+            public void PowerOff()
+            {
                 state = IDevice.State.off;
                 Console.WriteLine("... Device is off !");
             }
 
-            public void PowerOn() {
+            public void PowerOn()
+            {
+                if (state == IDevice.State.off) counter++;
                 state = IDevice.State.on;
-                counter++;
                 Console.WriteLine("Device is on ...");
             }
 

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using Zadanie1;
 
-namespace ver1UnitTests
+namespace TestProject
 {
 
     public class ConsoleRedirectionToStringWriter : IDisposable

@@ -1,9 +1,10 @@
 using System;
+using System.Globalization;
 using static Zadanie1.Devices;
 using static Zadanie1.Documents;
 
 namespace Zadanie1 {
-    public class Copier : BaseDevice {
+    public class Copier : BaseDevice, IPrinter, IScanner {
 
         public int PrintCounter {
             get { return _printCounter; }
@@ -23,33 +24,45 @@ namespace Zadanie1 {
             }
         }
         public void Print(in IDocument document) {
+            if (GetState() == IDevice.State.off) return;
             Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}");
             _printCounter++;
         }
        
         public void Scan(out IDocument documentScan,IDocument.FormatType formatType = IDocument.FormatType.PDF)
         {
-            _scanCounter++;
-            Console.WriteLine($"{DateTime.Now} Scan:");
-            if (formatType == IDocument.FormatType.PDF)
-            {
-                Console.WriteLine($"PDFScan{_scanCounter}.pdf");
-                documentScan = new PDFDocument("PDFScan{_scanCounter}.pdf");
-            } else if (formatType == IDocument.FormatType.JPG) {
-                Console.WriteLine($"ImageScan{_scanCounter}.jpg");
-                documentScan = new PDFDocument("ImageScan{_scanCounter}.jpg");
-            } else if(formatType == IDocument.FormatType.TXT){
-                Console.WriteLine($"TextScan{_scanCounter}.txt");
-                documentScan = new PDFDocument("TextScan{_scanCounter}.txt");
-            }
-            else
+            if (GetState() == IDevice.State.off)
             {
                 documentScan = null;
-                //exception
+                return;
             }
+            
+            _scanCounter++;
+            switch (formatType)
+            {
+                case IDocument.FormatType.PDF:
+                    documentScan = new PDFDocument($"PDFScan{_scanCounter}.pdf");
+                    break;
+                case IDocument.FormatType.JPG:
+                    documentScan = new PDFDocument($"ImageScan{_scanCounter}.jpg");
+                    break;
+                case IDocument.FormatType.TXT:
+                    documentScan = new PDFDocument($"TextScan{_scanCounter}.txt");
+                    break;
+                default:
+                    documentScan = null;
+                    break;
+            }
+            
+            Console.WriteLine($"{DateTime.Now} Scan: {documentScan.GetFileName()}");
+
         }
 
-        public void ScanAndPrint() {
+        public void ScanAndPrint()
+        {
+            IDocument document;
+            Scan(out document);
+            Print(document);
         }
     }
 }
