@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qmxqEGFpVKxZxC8UkRW5T8qMROwSLRPqSapBT1SqaZVJi2ZmVQS0LMpZrrJr+iGDA3YfLQl+uqFE7dD7n5+QoQ==",
+  "dgSpecHash": "4SW8vvF7KjKoq6JSTOgQwNNvI3E29yAKCQ3Ihax0yaQF53W0xJOcwzAaRMYyQl8rrkAoOx4eEmYavNRXQOQpsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Krysia\\Desktop\\WSEI\\Semestr II\\Programowanie obiektowe\\CopierSol\\Zadanie1UnitTests\\Zadanie1UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\Krysia\\Desktop\\WSEI\\Semestr II\\Programowanie obiektowe\\CopierSol\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Krysia\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
     "C:\\Users\\Krysia\\.nuget\\packages\\microsoft.codecoverage\\16.7.1\\microsoft.codecoverage.16.7.1.nupkg.sha512",

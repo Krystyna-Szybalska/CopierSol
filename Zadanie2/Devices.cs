@@ -50,5 +50,12 @@ namespace Zadanie2 {
             // w przeciwnym przypadku nic się dzieje
             void Scan(out IDocument document, IDocument.FormatType formatType);
         }
+        
+        public interface IFax : IDevice {
+            // dokument jest skanowany, jeśli urządzenie włączone
+            // w przeciwnym przypadku nic się dzieje
+            void Receive(in IDocument document);
+            void Send();
+        }
     }
 }

@@ -3,7 +3,7 @@
 namespace Zadanie2 {
     class Program {
         static void Main(string[] args) {
-            var xerox = new Copier();
+            var xerox = new MultifunctionalDevice();
             xerox.PowerOn();
             IDocument doc1 = new PDFDocument("aaa.pdf");
             xerox.Print(in doc1);

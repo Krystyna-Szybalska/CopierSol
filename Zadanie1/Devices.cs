@@ -17,7 +17,6 @@ namespace Zadanie1 {
         public abstract class BaseDevice : IDevice {
             protected IDevice.State state = IDevice.State.off;
             public IDevice.State GetState() => state;
-            private int counter = 0;
             public void PowerOff()
             {
                 state = IDevice.State.off;
@@ -26,15 +25,11 @@ namespace Zadanie1 {
 
             public void PowerOn()
             {
-                if (state == IDevice.State.off) counter++;
                 state = IDevice.State.on;
                 Console.WriteLine("Device is on ...");
             }
 
-            public int Counter {
-                get { return counter; }
-                private set { }
-            }
+            public int Counter { get; private set; } = 0;
         }
 
         public interface IPrinter : IDevice {

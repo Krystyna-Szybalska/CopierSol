@@ -1225,6 +1225,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "Zadanie2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Zadanie2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Zadanie2.dll": {}
+        }
       }
     }
   },
@@ -4613,13 +4623,19 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "Zadanie2/1.0.0": {
+      "type": "project",
+      "path": "../Zadanie2/Zadanie2.csproj",
+      "msbuildProject": "../Zadanie2/Zadanie2.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
-      "NUnit3TestAdapter >= 3.16.1"
+      "NUnit3TestAdapter >= 3.16.1",
+      "Zadanie2 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4656,7 +4672,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Krysia\\Desktop\\WSEI\\Semestr II\\Programowanie obiektowe\\CopierSol\\Zadanie2\\Zadanie2.csproj": {
+              "projectPath": "C:\\Users\\Krysia\\Desktop\\WSEI\\Semestr II\\Programowanie obiektowe\\CopierSol\\Zadanie2\\Zadanie2.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

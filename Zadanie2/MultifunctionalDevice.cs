@@ -1,24 +1,29 @@
 using System;
-using static Zadanie1.Devices;
-using static Zadanie1.Documents;
+using static Zadanie2.Devices;
+using static Zadanie2.Documents;
 
-namespace Zadanie1 {
-    public class Copier : BaseDevice, IPrinter, IScanner {
+namespace Zadanie2
+{
+    public class MultifunctionalDevice : BaseDevice, IPrinter, IScanner, IFax
+    {
         public new int Counter { get; private set; } = 0;
         public int PrintCounter { get; private set; } = 0;
         public int ScanCounter { get; private set; } = 0;
-
-        public void Print(in IDocument document) {
+        public int SendCounter { get; set; }
+        public int ReceiveCounter { get; set; }
+        
+        public void Print(in Documents.IDocument document)
+        {
             if (GetState() == IDevice.State.off) return;
             Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}");
             PrintCounter++;
         }
-       
-        public void Scan(out IDocument documentScan,IDocument.FormatType formatType = IDocument.FormatType.PDF)
+
+        public void Scan(out Documents.IDocument document, Documents.IDocument.FormatType formatType= IDocument.FormatType.PDF)
         {
             if (GetState() == IDevice.State.off)
             {
-                documentScan = null;
+                document = null;
                 return;
             }
             
@@ -26,29 +31,41 @@ namespace Zadanie1 {
             switch (formatType)
             {
                 case IDocument.FormatType.PDF:
-                    documentScan = new PDFDocument($"PDFScan{ScanCounter}.pdf");
+                    document = new PDFDocument($"PDFScan{ScanCounter}.pdf");
                     break;
                 case IDocument.FormatType.JPG:
-                    documentScan = new PDFDocument($"ImageScan{ScanCounter}.jpg");
+                    document = new PDFDocument($"ImageScan{ScanCounter}.jpg");
                     break;
                 case IDocument.FormatType.TXT:
-                    documentScan = new PDFDocument($"TextScan{ScanCounter}.txt");
+                    document = new PDFDocument($"TextScan{ScanCounter}.txt");
                     break;
                 default:
-                    documentScan = null;
+                    document = null;
                     break;
             }
             
-            Console.WriteLine($"{DateTime.Now} Scan: {documentScan.GetFileName()}");
+            Console.WriteLine($"{DateTime.Now} Scan: {document.GetFileName()}");
 
         }
-
         public void ScanAndPrint()
         {
             if (GetState() == IDevice.State.off) return;
             IDocument document;
             Scan(out document);
             Print(document);
+        }
+        public void Receive(in Documents.IDocument document)
+        {
+            if (GetState() == IDevice.State.off) return;
+            
+            throw new System.NotImplementedException();
+        }
+
+        public void Send()
+        {
+            if (GetState() == IDevice.State.off) return;
+            
+            throw new System.NotImplementedException();
         }
         
         public new void PowerOn() {
