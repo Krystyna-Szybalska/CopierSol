@@ -1,6 +1,6 @@
-﻿using static Zadanie1.Documents;
+﻿using static Zadanie2.Documents;
 
-namespace Zadanie1 {
+namespace Zadanie2 {
     class Program {
         static void Main(string[] args) {
             var xerox = new Copier();

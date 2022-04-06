@@ -1,9 +1,9 @@
 using System;
 using System.Globalization;
-using static Zadanie1.Devices;
-using static Zadanie1.Documents;
+using static Zadanie2.Devices;
+using static Zadanie2.Documents;
 
-namespace Zadanie1 {
+namespace Zadanie2 {
     public class Copier : BaseDevice, IPrinter, IScanner {
 
         public int PrintCounter {

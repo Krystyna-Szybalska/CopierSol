@@ -1,4 +1,4 @@
-namespace Zadanie1 {
+namespace Zadanie2 {
     public class Documents {
         public interface IDocument {
             enum FormatType { TXT, PDF, JPG }

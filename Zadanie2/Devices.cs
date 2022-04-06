@@ -1,7 +1,7 @@
 using System;
-using static Zadanie1.Documents;
+using static Zadanie2.Documents;
 
-namespace Zadanie1 {
+namespace Zadanie2 {
     public class Devices {
         public interface IDevice {
             enum State { on, off };
