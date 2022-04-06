@@ -58,14 +58,18 @@ namespace Zadanie2
         {
             if (GetState() == IDevice.State.off) return;
             
-            throw new System.NotImplementedException();
+            ReceiveCounter++;
+            Console.WriteLine($"Receive: {document.GetFileName()}");
+            Print(document);
         }
 
         public void Send()
         {
             if (GetState() == IDevice.State.off) return;
             
-            throw new System.NotImplementedException();
+            SendCounter++;
+            Scan(out var document);
+            Console.WriteLine($"Send: {document.GetFileName()}");
         }
         
         public new void PowerOn() {
