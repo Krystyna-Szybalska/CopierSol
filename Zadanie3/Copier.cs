@@ -5,6 +5,7 @@ namespace Zadanie3
 {
     public class Copier : BaseDevice
     {
+        public new int Counter { get; private set; } = 0;
         public Printer Printer { get; set; }
         public Scanner Scanner { get; set; }
         
@@ -13,7 +14,9 @@ namespace Zadanie3
             Scanner = new Scanner();
         }
         public void PowerOn() {
-            if (state == IDevice.State.off) {
+            if (state == IDevice.State.off)
+            {
+                Counter++;
                 base.PowerOn();
             }
         }
