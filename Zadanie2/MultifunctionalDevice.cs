@@ -54,7 +54,7 @@ namespace Zadanie2
             Scan(out document);
             Print(document);
         }
-        public void Receive(in Documents.IDocument document)
+        public void Receive(in IDocument document)
         {
             if (GetState() == IDevice.State.off) return;
             

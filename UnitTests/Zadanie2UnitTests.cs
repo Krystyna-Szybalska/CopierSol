@@ -14,7 +14,7 @@ namespace TestProject
             var multifunctionalDevice = new MultifunctionalDevice();
             multifunctionalDevice.PowerOff();
 
-            Assert.AreEqual(Devices.IDevice.State.off, multifunctionalDevice.GetState()); 
+            Assert.AreEqual(Devices.IDevice.State.off, multifunctionalDevice.GetState());
         }
 
         [TestMethod]
@@ -37,13 +37,14 @@ namespace TestProject
 
             var currentConsoleOut = Console.Out;
             currentConsoleOut.Flush();
-            using( var consoleOutput = new ConsoleRedirectionToStringWriter() )
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
             {
                 Documents.IDocument doc1 = new Documents.PDFDocument("aaa.pdf");
                 multifunctionalDevice.Print(in doc1);
                 Assert.IsTrue(consoleOutput.GetOutput().Contains("Print"));
             }
-            Assert.AreEqual(currentConsoleOut, Console.Out);   
+
+            Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
         // weryfikacja, czy po wywołaniu metody `Print` i wyłączonej kopiarce w napisie NIE pojawia się słowo `Print`
@@ -62,6 +63,7 @@ namespace TestProject
                 multifunctionalDevice.Print(in doc1);
                 Assert.IsFalse(consoleOutput.GetOutput().Contains("Print"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
@@ -81,10 +83,11 @@ namespace TestProject
                 multifunctionalDevice.Scan(out doc1);
                 Assert.IsFalse(consoleOutput.GetOutput().Contains("Scan"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
-        // weryfikacja, czy po wywołaniu metody `Scan` i wyłączonej kopiarce w napisie pojawia się słowo `Scan`
+        // weryfikacja, czy po wywołaniu metody `Scan` i włączonej kopiarce w napisie pojawia się słowo `Scan`
         // wymagane przekierowanie konsoli do strumienia StringWriter
         [TestMethod]
         public void MultifunctionalDevice_Scan_DeviceOn()
@@ -100,6 +103,7 @@ namespace TestProject
                 multifunctionalDevice.Scan(out doc1);
                 Assert.IsTrue(consoleOutput.GetOutput().Contains("Scan"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
@@ -128,6 +132,7 @@ namespace TestProject
                 Assert.IsTrue(consoleOutput.GetOutput().Contains("Scan"));
                 Assert.IsTrue(consoleOutput.GetOutput().Contains(".pdf"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
@@ -149,6 +154,7 @@ namespace TestProject
                 Assert.IsTrue(consoleOutput.GetOutput().Contains("Scan"));
                 Assert.IsTrue(consoleOutput.GetOutput().Contains("Print"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
@@ -169,6 +175,7 @@ namespace TestProject
                 Assert.IsFalse(consoleOutput.GetOutput().Contains("Scan"));
                 Assert.IsFalse(consoleOutput.GetOutput().Contains("Print"));
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
 
@@ -254,6 +261,98 @@ namespace TestProject
 
             // 3 włączenia
             Assert.AreEqual(3, multifunctionalDevice.Counter);
+        }
+
+        [TestMethod]
+        public void MultifunctionalDevice_ReceiveCounter()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOn();
+        }
+
+        [TestMethod]
+        public void MultifunctionalDevice_SendCounter()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOn();
+        }
+        
+        // weryfikacja, czy po wywołaniu metody `Send` i włączonej kopiarce w napisie pojawia się słowo `Send`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void MultifunctionalDevice_Send_DeviceOn()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOn();
+
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                multifunctionalDevice.Send();
+                Assert.IsTrue(consoleOutput.GetOutput().Contains("Scan"));
+            }
+
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+        }
+
+        // weryfikacja, czy po wywołaniu metody `Send` i włączonej kopiarce w napisie pojawia się słowo `Send`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void MultifunctionalDevice_Send_DeviceOff()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOff();
+
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                multifunctionalDevice.Send();
+                Assert.IsFalse(consoleOutput.GetOutput().Contains("Send"));
+            }
+
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+        }
+
+        // weryfikacja, czy po wywołaniu metody `Receive` i włączonej kopiarce w napisie pojawia się słowo `Receive`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void MultifunctionalDevice_Receive_DeviceOn()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOn();
+
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                Documents.IDocument doc1 = new Documents.TextDocument("TestDocument");
+                multifunctionalDevice.Receive(doc1);
+                Assert.IsTrue(consoleOutput.GetOutput().Contains("Receive"));
+            }
+
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+        }
+        
+        // weryfikacja, czy po wywołaniu metody `Receive` i wyłączonej kopiarce w napisie pojawia się słowo `Receive`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void MultifunctionalDevice_Receive_DeviceOff()
+        {
+            var multifunctionalDevice = new MultifunctionalDevice();
+            multifunctionalDevice.PowerOff();
+
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                Documents.IDocument doc1 = new Documents.TextDocument("TestDocument");
+                multifunctionalDevice.Receive(doc1);
+                Assert.IsFalse(consoleOutput.GetOutput().Contains("Receive"));
+            }
+
+            Assert.AreEqual(currentConsoleOut, Console.Out);
         }
     }
 }
