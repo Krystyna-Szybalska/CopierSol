@@ -52,7 +52,7 @@ namespace Zadanie2 {
         }
         
         public interface IFax : IDevice {
-            // dokument jest skanowany, jeśli urządzenie włączone
+            // dokument jest faksowany, jeśli urządzenie włączone
             // w przeciwnym przypadku nic się dzieje
             void Receive(in IDocument document);
             void Send();

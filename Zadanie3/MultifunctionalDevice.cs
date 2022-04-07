@@ -3,15 +3,18 @@ using static Zadanie3.Devices;
 
 namespace Zadanie3
 {
-    public class Copier : BaseDevice
+    public class MultifunctionalDevice : BaseDevice
     {
         public Printer Printer { get; set; }
         public Scanner Scanner { get; set; }
+        public Fax Fax { get; set; }
         
-        public Copier() {
+        public MultifunctionalDevice() {
             Printer = new Printer();
             Scanner = new Scanner();
+            Fax = new Fax();
         }
+        
         public void PowerOn() {
             if (state == IDevice.State.off) {
                 base.PowerOn();
@@ -50,6 +53,22 @@ namespace Zadanie3
             Scan(out doc, IDocument.FormatType.JPG);
             Print(in doc);
             
+        }
+
+        public void Receive(in IDocument document)
+        {
+            if (state == IDevice.State.off) return;
+            Fax.PowerOn();
+            Fax.Receive(document);
+            Fax.PowerOff();
+        }
+        
+        public void Send(in IDocument document)
+        {
+            if (state == IDevice.State.off) return;
+            Fax.PowerOn();
+            Fax.Send(document);
+            Fax.PowerOff();
         }
     }
 }

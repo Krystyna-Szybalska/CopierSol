@@ -29,10 +29,10 @@ namespace Zadanie1 {
                     documentScan = new PDFDocument($"PDFScan{ScanCounter}.pdf");
                     break;
                 case IDocument.FormatType.JPG:
-                    documentScan = new PDFDocument($"ImageScan{ScanCounter}.jpg");
+                    documentScan = new ImageDocument($"ImageScan{ScanCounter}.jpg");
                     break;
                 case IDocument.FormatType.TXT:
-                    documentScan = new PDFDocument($"TextScan{ScanCounter}.txt");
+                    documentScan = new TextDocument($"TextScan{ScanCounter}.txt");
                     break;
                 default:
                     documentScan = null;

@@ -9,8 +9,8 @@ namespace Zadanie2
         public new int Counter { get; private set; } = 0;
         public int PrintCounter { get; private set; } = 0;
         public int ScanCounter { get; private set; } = 0;
-        public int SendCounter { get; set; }
-        public int ReceiveCounter { get; set; }
+        public int SendCounter { get; private set; } = 0;
+        public int ReceiveCounter { get; private set; } = 0;
         
         public void Print(in Documents.IDocument document)
         {

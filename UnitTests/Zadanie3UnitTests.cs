@@ -1,6 +1,6 @@
 namespace TestProject
 {
-    public class Zadanie3UniTests
+    public class Zadanie3UnitTests
     {
         
     }

@@ -24,7 +24,7 @@ namespace Zadanie3
         }
         public void Print(in Documents.IDocument document)
         {
-            if (GetState() == IDevice.State.off) return;
+            if (state == IDevice.State.off) return;
             Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}");
             PrintCounter++;
         }

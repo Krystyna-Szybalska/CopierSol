@@ -11,7 +11,7 @@ namespace Zadanie3
 
         public void Scan(out IDocument document, IDocument.FormatType formatType)
         {
-            if (GetState() == IDevice.State.off)
+            if (state == IDevice.State.off)
             {
                 document = null;
                 return;
